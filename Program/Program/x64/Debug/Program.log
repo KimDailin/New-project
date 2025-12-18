@@ -1,3 +1,2 @@
 ﻿  source.c
-C:\Users\Administrator\Desktop\New-project\Program\source.c(160,1): error C4700: 초기화되지 않은 'x' 지역 변수를 사용했습니다.
-C:\Users\Administrator\Desktop\New-project\Program\source.c(160,1): error C4700: 초기화되지 않은 'y' 지역 변수를 사용했습니다.
+  Program.vcxproj -> C:\Users\Administrator\Desktop\New-project\Program\x64\Debug\Program.exe

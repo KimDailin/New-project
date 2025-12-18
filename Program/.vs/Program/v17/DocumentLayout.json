@@ -13,6 +13,9 @@
       "AbsoluteMoniker": "D:0:0:{1614393C-84ED-49A7-9E62-01E5C6970F58}|..\\Class4th (Overflow \u0026 Underflow)\\Class4th (Overflow \u0026 Underflow).vcxproj|C:\\Users\\Administrator\\Desktop\\New-project\\Class4th (Overflow \u0026 Underflow)\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{1F3AA44D-FC9E-42C0-859F-38F497743D78}|..\\Class5th (Conditional Statement)\\Class5th (Conditional Statement).vcxproj|C:\\Users\\Administrator\\Desktop\\New-project\\Class5th (Conditional Statement)\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F8D58DBB-D0B9-4B67-BC6F-F347E16D9209}|..\\Class2th (Variable \u0026 Constant)\\Class2th (Variable \u0026 Constant).vcxproj|C:\\Users\\Administrator\\Desktop\\New-project\\Class2th (Variable \u0026 Constant)\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
@@ -26,11 +29,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "source.c",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\New-project\\Class1th (Compile)\\source.c",
               "RelativeDocumentMoniker": "..\\Class1th (Compile)\\source.c",
@@ -43,7 +46,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "source.c",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\New-project\\Class2th (Variable \u0026 Constant)\\source.c",
               "RelativeDocumentMoniker": "..\\Class2th (Variable \u0026 Constant)\\source.c",
@@ -62,10 +65,11 @@
               "RelativeDocumentMoniker": "..\\Class3th (Bit)\\source.c",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\New-project\\Class3th (Bit)\\source.c",
               "RelativeToolTip": "..\\Class3th (Bit)\\source.c",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAAIUAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIEAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-12-15T12:14:50.218Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -78,7 +82,22 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-12-16T11:45:55.552Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "source.c",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\New-project\\Class5th (Conditional Statement)\\source.c",
+              "RelativeDocumentMoniker": "..\\Class5th (Conditional Statement)\\source.c",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\New-project\\Class5th (Conditional Statement)\\source.c",
+              "RelativeToolTip": "..\\Class5th (Conditional Statement)\\source.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwv8wAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-12-18T11:16:32.105Z",
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -96,7 +115,7 @@
               "RelativeDocumentMoniker": "source.c",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\New-project\\Program\\source.c",
               "RelativeToolTip": "source.c",
-              "ViewState": "AgIAADgAAAAAAAAAAAAxwKAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACYAAAAAAAAAAAAAAE4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-12-10T12:22:11.863Z",
               "EditorCaption": ""
