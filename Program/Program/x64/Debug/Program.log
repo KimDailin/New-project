@@ -1,2 +1,5 @@
 ﻿  source.c
-  Program.vcxproj -> C:\Users\Administrator\Desktop\New-project\Program\x64\Debug\Program.exe
+C:\Users\a0102\OneDrive\바탕 화면\New-project\Program\source.c(54,8): warning C4047: '=': 'int'의 간접 참조 수준이 'int *'과(와) 다릅니다.
+C:\Users\a0102\OneDrive\바탕 화면\New-project\Program\source.c(55,10): warning C4477: 'printf' : 서식 문자열 '%p'에 'void *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'int'입니다.
+C:\Users\a0102\OneDrive\바탕 화면\New-project\Program\source.c(55,10): warning C4313: 'printf': 서식 문자열의 '%p'이(가) int' 형식의 인수 1과(와) 충돌합니다.
+  Program.vcxproj -> C:\Users\a0102\OneDrive\바탕 화면\New-project\Program\x64\Debug\Program.exe
