@@ -7,6 +7,9 @@
       "RelativeMoniker": "D:0:0:{A1F1E2C3-2E8C-496A-B421-A874241A2B01}|Program.vcxproj|solutionrelative:source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{AC2A161A-E35D-4DCF-B099-DC33D31FE723}|..\\Class7th (Type Conversion)\\Class7th (Type Conversion).vcxproj|C:\\Users\\Administrator\\Desktop\\New-project\\Class7th (Type Conversion)\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{883D90B0-348C-4E3D-8FCF-D690E823CCB1}|..\\Class6th (Iteration Statement)\\Class6th (Iteration Statement).vcxproj|C:\\Users\\Administrator\\Desktop\\New-project\\Class6th (Iteration Statement)\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
@@ -32,11 +35,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "source.c",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\New-project\\Class1th (Compile)\\source.c",
               "RelativeDocumentMoniker": "..\\Class1th (Compile)\\source.c",
@@ -45,11 +48,12 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-12-15T11:52:45.451Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "source.c",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\New-project\\Class2th (Variable \u0026 Constant)\\source.c",
               "RelativeDocumentMoniker": "..\\Class2th (Variable \u0026 Constant)\\source.c",
@@ -58,11 +62,12 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-12-15T11:53:39.217Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "source.c",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\New-project\\Class3th (Bit)\\source.c",
               "RelativeDocumentMoniker": "..\\Class3th (Bit)\\source.c",
@@ -71,11 +76,12 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAIEAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-12-15T12:14:50.218Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "source.c",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\New-project\\Class4th (Overflow \u0026 Underflow)\\source.c",
               "RelativeDocumentMoniker": "..\\Class4th (Overflow \u0026 Underflow)\\source.c",
@@ -89,7 +95,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "source.c",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\New-project\\Class5th (Conditional Statement)\\source.c",
               "RelativeDocumentMoniker": "..\\Class5th (Conditional Statement)\\source.c",
@@ -98,6 +104,34 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-12-18T11:16:32.105Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "source.c",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\New-project\\Class6th (Iteration Statement)\\source.c",
+              "RelativeDocumentMoniker": "..\\Class6th (Iteration Statement)\\source.c",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\New-project\\Class6th (Iteration Statement)\\source.c",
+              "RelativeToolTip": "..\\Class6th (Iteration Statement)\\source.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-12-19T11:40:08.794Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "source.c",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\New-project\\Class7th (Type Conversion)\\source.c",
+              "RelativeDocumentMoniker": "..\\Class7th (Type Conversion)\\source.c",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\New-project\\Class7th (Type Conversion)\\source.c",
+              "RelativeToolTip": "..\\Class7th (Type Conversion)\\source.c",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACEAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-12-23T11:01:27.764Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -111,26 +145,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "source.c",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\New-project\\Class6th (Iteration Statement)\\source.c",
-              "RelativeDocumentMoniker": "..\\Class6th (Iteration Statement)\\source.c",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\New-project\\Class6th (Iteration Statement)\\source.c",
-              "RelativeToolTip": "..\\Class6th (Iteration Statement)\\source.c",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAF8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-12-19T11:40:08.794Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "source.c",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\New-project\\Program\\source.c",
               "RelativeDocumentMoniker": "source.c",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\New-project\\Program\\source.c",
               "RelativeToolTip": "source.c",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAEwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAUwHMAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-12-10T12:22:11.863Z",
               "EditorCaption": ""
