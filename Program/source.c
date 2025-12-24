@@ -28,11 +28,11 @@ void main()
 	// 배열의 크기는 생략할 수 있으며, 초기화 목록에서 
 	// 설정한 요소에 따라 배열의 크기가 결정됩니다.
 
-	int array[] = { 10,20,30,40,50 };
-	int* pointer[] = { array, array + 1, array + 2, array + 3, array + 4 };
+	int array[5] = { 10,20,30,40,50 };
+	int* pointer[5] = &array;
 
 	for (int i = 0; i < 5; i++) {
-		printf("array=%d\n", *pointer[i]);
+		printf("%d\n", *pointer[i]);
 	}
 #pragma endregion
 
