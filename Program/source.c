@@ -1,101 +1,72 @@
 #include <stdio.h>
 
+void initialize()
+{
+	printf("initialize...\n");
+}
+
+void coordinate(int x, int y) 
+{
+	printf("x : %d | y : %d\n",x,y);
+}
+
+void reset(char grade, int level, float experience)
+{
+	printf("grade : %c\n", grade);
+	printf("level : %d\n", level);
+	printf("experience : %f\n", experience);
+}
+
+void swap(int X, int Y)
+{
+	int temp = Y;
+	Y = X;
+	X = temp;
+}
+
 void main()
 {
-#pragma region 배열
-	// 같은 자료형의 변수들로 이루어진 유한 집합
+#pragma region 함수
+	// 하나의 특별한 목적의 작업을 수행하기 위해
+	// 독립적으로 설계된 코드의 집합입니다.
 
-	// int list[5];
-	// 
-	// // 배열의 경우 첫 번째 원소는 0부터 시작합니다.
-	// 
-	// for (int i = 0; i < 5; i++) {
-	// 		list[i] = (i+1) * 10;
-	// 
-	// 		printf("list[%d] : %d\n", i, list[i]);
-	// }
-
-	// 배열의 메모리 공간은 프로그램이 실행되는 동안
-	// 변경할 수 없습니다.
-
-	// int array[] = { 1,2,3,4,5 };
-	// int size = sizeof(array) / sizeof(array[0]);
-	// 
-	// for (int i = 0; i < size; i++) {
-	//		printf("array[%d]의 값 : %d\n", i, array[i]);
-	// }
-
-	// 배열의 크기는 생략할 수 있으며, 초기화 목록에서 
-	// 설정한 요소에 따라 배열의 크기가 결정됩니다.
-
-	// int array[5] = { 10,20,30,40,50 };
-	// int* pointer[5] = &array;
-	// 
-	// for (int i = 0; i < 5; i++) {
-	// 		printf("%d\n", *pointer[i]);
-	// }
-#pragma endregion
-
-#pragma region 문자열
-	// 연속적인 메모리 공간에 저장된 문자 변수의 
-	// 집합입니다.
-
-	// const char* character = "World";
-	// printf("character가 가리키는 문자열 : %s\n", character);
-	// 
-	// char message[] = "message";
-	// message[1] = 'a';
-	// printf("message가 가리키는 문자열 : %s\n", message);
-	// 
-	// // 문자열의 경우 포인터를 이용하여 문자열 상수를 가리키도록 할
-	// // 수 있으며, 문자열 상수는 데이터 영역의 읽기 전용 공간에 저장
-	// // 되기 때문에 문자열의 값을 변경할 수 없습니다.
-	// 
-	// character = "exercise";
-	// printf("character가 가리키는 문자열 : %s\n", character);
-	// 
-	// // 문자열은 공백도 함께 메모리 공간에 포함하여 크기가 결정되며,
-	// // 마지막에 문자열의 끝을 알려준느 제어 문자가 추가됩니다.
-	// 
-	// char alpha[] = "shower";	// "show\0er";
-	// alpha[4] = '\0';
-	// printf("alpha가 가리키는 문자열 : %s\n", alpha);
-
-	// 문자열의 경우 서로 연속적인 메모리 공간으로 연결되어 있지만,
-	// 문자 배열 사이에 무효의 문자를 넣게 되면 무효의 문자까지만 출력됩니다.
-#pragma endregion
-
-#pragma region (2)차원 배열
-	// 배열의 요소로 또 다른 배열을 가지는 배열입니다.
-
-	// int array2D[3][3] =
-	// {
-	// 	{1 ,2 ,3 },
-	// 	{4 ,5 ,6 },
-	// 	{7 ,8 ,9 },
-	// };
-	// 
-	// for (int i = 0; i < 3; i++) {
-	// 		for (int j = 0; j < 3; j++) {
-	// 			printf("%d ", array2D[i][j]);
-	// 	}
-	// 		printf("\n");
-	// }
-
-	// 2차원 배열은 행과 열로 구분되며, 앞에 있는 배열은 
-	// 열을 의미하고, 뒤에 있는 배열은 행을 의미합니다.
+	// initialize();
 
 #pragma endregion
 
-#pragma region 아스키 코드
-	// 미국 구립 표준 협회에서 표준화한 정보 교환용
-	// 7 bit 부호 체계입니다.
+#pragma region 매개 변수
+	// 함수의 정의에서 전달받은 인수를 함수 내부로
+	// 전달하기 위해 사용하는 변수입니다.
 
-	// char alphabet = 'A';
-	// printf("alphabet 변수의 10 진수 값 : %d\n", alphabet);
-	// for (int i = 0; i < 26; i++) {
-	// 		printf("%c ", 'A'+i);
-	// }
+	// coordinate(10, 20);
+
+	// 매개 변수는 함수 내부에서만 연산이 이루어지며,
+	// 함수가 종료되면 메모리에서 해제됩니다.
+
+	// 하나의 함수에 서로 다른 자료형의 매개 변수를 함께
+	// 정의할 수 있으며, 여러 개의 매개 변수를 생성할 수 있습니다.
+
+	// reset('A', 1, 125.46f);
+
+
+#pragma endregion
+	
+#pragma region 인수
+	// 함수가 호출될 때 매개 변수에 실제로 전달되는 값입니다.
+
+	int x = 10, y = 20;
+
+	swap(x, y);
+
+	printf("x의 값 : %d\n", x);
+	printf("y의 값 : %d\n", y);
+
+	// 인수의 경우 함수에 있는 매개 변수에 따라 전달할 수 있는
+	// 인수의 수가 결정되며, 값을 전달하는 인수와 값을 전달 받는
+	// 매개 변수의 자료형이 서로 일치해야 합니다.
+
+	
+
 #pragma endregion
 
 }
