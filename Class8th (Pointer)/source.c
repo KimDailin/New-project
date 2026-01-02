@@ -145,4 +145,18 @@ void main()
 
 #pragma endregion
 
+#pragma region 허상 포인터
+// 이미 해제된 메모리 영역을 가리키는 포인터입니다.
+
+// int* pointer = NULL;
+// {
+// 	  int data = 0;
+// 	  pointer = &data;
+// 	  *pointer = 30; 
+// 	  printf("pointer가 가리키고 있는 값 : %d\n", *pointer);
+// }
+// printf("pointer가 가리키고 있는 값 : %d\n", *pointer);
+
+#pragma endregion
+
 }

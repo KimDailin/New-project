@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.13.35919.96 d17.13
+# Visual Studio Version 18
+VisualStudioVersion = 18.1.11312.151 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Program", "Program.vcxproj", "{A1F1E2C3-2E8C-496A-B421-A874241A2B01}"
 EndProject
@@ -24,6 +24,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Class9th (Array)", "..\Class9th (Array)\Class9th (Array).vcxproj", "{8C034DF3-C4B7-4EE4-8B90-FE288AF522BE}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Class10th (Function)", "..\Class10th (Function)\Class10th (Function).vcxproj", "{4E8D2B9C-3E7A-4284-BC9B-0CAEB2669B53}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Class11th (Storage)", "..\Class11th (Storage)\Class11th (Storage).vcxproj", "{B8DAD124-C2B6-4BD9-A98B-7A23DE2486F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -121,6 +123,14 @@ Global
 		{4E8D2B9C-3E7A-4284-BC9B-0CAEB2669B53}.Release|x64.Build.0 = Release|x64
 		{4E8D2B9C-3E7A-4284-BC9B-0CAEB2669B53}.Release|x86.ActiveCfg = Release|Win32
 		{4E8D2B9C-3E7A-4284-BC9B-0CAEB2669B53}.Release|x86.Build.0 = Release|Win32
+		{B8DAD124-C2B6-4BD9-A98B-7A23DE2486F1}.Debug|x64.ActiveCfg = Debug|x64
+		{B8DAD124-C2B6-4BD9-A98B-7A23DE2486F1}.Debug|x64.Build.0 = Debug|x64
+		{B8DAD124-C2B6-4BD9-A98B-7A23DE2486F1}.Debug|x86.ActiveCfg = Debug|Win32
+		{B8DAD124-C2B6-4BD9-A98B-7A23DE2486F1}.Debug|x86.Build.0 = Debug|Win32
+		{B8DAD124-C2B6-4BD9-A98B-7A23DE2486F1}.Release|x64.ActiveCfg = Release|x64
+		{B8DAD124-C2B6-4BD9-A98B-7A23DE2486F1}.Release|x64.Build.0 = Release|x64
+		{B8DAD124-C2B6-4BD9-A98B-7A23DE2486F1}.Release|x86.ActiveCfg = Release|Win32
+		{B8DAD124-C2B6-4BD9-A98B-7A23DE2486F1}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
