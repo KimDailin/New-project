@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{D668BEB2-393D-4717-9C95-0FC680FA2848}|Game_Program.vcxproj|C:\\Users\\a0102\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\New-project\\Game_Program\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D668BEB2-393D-4717-9C95-0FC680FA2848}|Game_Program.vcxproj|solutionrelative:source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D668BEB2-393D-4717-9C95-0FC680FA2848}|Game_Program.vcxproj|C:\\Users\\a0102\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\New-project\\Game_Program\\\uC18C\uC2A4.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D668BEB2-393D-4717-9C95-0FC680FA2848}|Game_Program.vcxproj|solutionrelative:\uC18C\uC2A4.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,13 +30,26 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "\uC18C\uC2A4.c",
+              "DocumentMoniker": "C:\\Users\\a0102\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\New-project\\Game_Program\\\uC18C\uC2A4.c",
+              "RelativeDocumentMoniker": "\uC18C\uC2A4.c",
+              "ToolTip": "C:\\Users\\a0102\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\New-project\\Game_Program\\\uC18C\uC2A4.c",
+              "RelativeToolTip": "\uC18C\uC2A4.c",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAAAAUAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2026-01-26T12:18:42.212Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "source.c",
               "DocumentMoniker": "C:\\Users\\a0102\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\New-project\\Game_Program\\source.c",
               "RelativeDocumentMoniker": "source.c",
               "ToolTip": "C:\\Users\\a0102\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\New-project\\Game_Program\\source.c",
               "RelativeToolTip": "source.c",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAAEgAAABdAAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAHEAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2026-01-23T11:01:05.907Z",
               "EditorCaption": ""
