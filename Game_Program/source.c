@@ -82,25 +82,24 @@ int main() {
         else {
             printf("  Computer Thinking... \n");
             Sleep(550);
+            // 똑똑한 컴퓨터
+            int smartchoice = 0;
+            // 컴퓨터 이길 곳이 있다면 둔다.
+            smartchoice = SmartMove('X');
 
-            int SmartChoice = 0;
-            // 1순위: 컴퓨터 이길 곳이 있다면 둔다.
-            SmartChoice = SmartMove('X');
+            // 상대방이 이길 곳이 있다면 막는다.
+            if (smartchoice == 0) smartchoice = SmartMove('O');
 
-            // 2순위: 상대방이 이길 곳이 있다면 막는다.
-            if (SmartChoice == 0) SmartChoice = SmartMove('O');
+            // 보드판에서 5번이 비어있다면 차지한다.
+            if (smartchoice == 0 && board[1][1] == '5') smartchoice = 5;
 
-            // 3순위: 5번이 비어있다면 차지한다.
-            if (SmartChoice == 0 && board[1][1] == '5') SmartChoice = 5;
-
-            // 4순위: 빈 공간 중 랜덤하게 선택한다.
-            if (SmartChoice == 0) {
+            // 빈 공간 중 랜덤하게 선택한다.
+            if (smartchoice == 0) {
                 do {
-                    SmartChoice = (rand() % 9) + 1;
-                } while (board[(SmartChoice - 1) / 3][(SmartChoice - 1) % 3] == 'O' ||
-                    board[(SmartChoice - 1) / 3][(SmartChoice - 1) % 3] == 'X');
+                    smartchoice = (rand() % 9) + 1;
+                } while (board[(smartchoice - 1) / 3][(smartchoice - 1) % 3] == 'O' || board[(smartchoice - 1) / 3][(smartchoice - 1) % 3] == 'X');
             }
-            choice = SmartChoice;
+            choice = smartchoice;
         }
 
         int row = (choice - 1) / 3;
@@ -112,14 +111,14 @@ int main() {
             if (player == 2) {
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
                 printf("  컴퓨터가 %d번을 선택했습니다.", choice);
-                Sleep(800);
+                Sleep(700);
             }
             player++;
         }
         else {
             if (player == 1) {
                 printf("  [!] 잘못된 위치입니다. 다시 입력하세요.");
-                Sleep(800);
+                Sleep(700);
             }
         }
     } while (status == -1);
@@ -127,10 +126,10 @@ int main() {
     Board();
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
     if (status == 1) {
-        if (--player == 1) printf("   ☆ 당신의 승리입니다! ☆\n");
-        else printf("   ★ 컴퓨터가 승리했습니다! ★\n");
+        if (--player == 1) printf("\n   ☆ 당신의 승리입니다! ☆\n");
+        else printf("\n   ★ 컴퓨터가 승리했습니다! ★\n");
     }
-    else printf("   무승부입니다!\n");
+    else printf("\n   무승부입니다!\n");
 
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
     return 0;
