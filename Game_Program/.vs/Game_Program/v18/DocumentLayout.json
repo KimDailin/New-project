@@ -5,14 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D668BEB2-393D-4717-9C95-0FC680FA2848}|Game_Program.vcxproj|C:\\Users\\a0102\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\New-project\\Game_Program\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D668BEB2-393D-4717-9C95-0FC680FA2848}|Game_Program.vcxproj|solutionrelative:source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D668BEB2-393D-4717-9C95-0FC680FA2848}|Game_Program.vcxproj|C:\\Users\\a0102\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\New-project\\Game_Program\\board.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D668BEB2-393D-4717-9C95-0FC680FA2848}|Game_Program.vcxproj|solutionrelative:board.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D668BEB2-393D-4717-9C95-0FC680FA2848}|Game_Program.vcxproj|C:\\Users\\a0102\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\New-project\\Game_Program\\\uC18C\uC2A4.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D668BEB2-393D-4717-9C95-0FC680FA2848}|Game_Program.vcxproj|solutionrelative:\uC18C\uC2A4.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,22 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "\uC18C\uC2A4.c",
-              "DocumentMoniker": "C:\\Users\\a0102\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\New-project\\Game_Program\\\uC18C\uC2A4.c",
-              "RelativeDocumentMoniker": "\uC18C\uC2A4.c",
-              "ToolTip": "C:\\Users\\a0102\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\New-project\\Game_Program\\\uC18C\uC2A4.c",
-              "RelativeToolTip": "\uC18C\uC2A4.c",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2026-01-26T12:18:42.212Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
@@ -54,43 +32,9 @@
               "RelativeDocumentMoniker": "source.c",
               "ToolTip": "C:\\Users\\a0102\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\New-project\\Game_Program\\source.c",
               "RelativeToolTip": "source.c",
-              "ViewState": "AgIAAJgAAAAAAAAAAAAmwLEAAABBAAAAAAAAAA==",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAAAJYAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2026-01-23T11:01:05.907Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "8341fc5b-b911-40ce-8f71-1ac6c89b09f8",
-        "Display": 0,
-        "X": 125,
-        "Y": 192,
-        "Width": 1905,
-        "Height": 813,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "board.c",
-              "DocumentMoniker": "C:\\Users\\a0102\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\New-project\\Game_Program\\board.c",
-              "RelativeDocumentMoniker": "board.c",
-              "ToolTip": "C:\\Users\\a0102\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\New-project\\Game_Program\\board.c",
-              "RelativeToolTip": "board.c",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAIwFoAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2026-01-28T11:55:52.261Z",
               "EditorCaption": ""
             }
           ]
