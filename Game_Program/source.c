@@ -12,7 +12,6 @@ int choice, player;
 typedef struct { int r, c; } Position;
 Position player_history[2][3];
 int stone_count[2] = { 0, 0 };
-
 int mcx, mcy;
 
 void gotoxy(int x, int y) {
@@ -26,6 +25,7 @@ void FullScreen() {
     SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_OVERLAPPEDWINDOW);
     ShowWindow(hwnd, SW_MAXIMIZE);
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
     DWORD mode;    // 마우스 입력 활성화
     GetConsoleMode(hConsole, &mode);
     SetConsoleMode(hConsole, mode | ENABLE_MOUSE_INPUT);
@@ -40,27 +40,18 @@ int Board() {
     GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
     int width = csbi.srWindow.Right - csbi.srWindow.Left + 1;
     int height = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
-
     int start_x = (width - 45) / 2;
     int start_y = (height - 22) / 2;
     mcx = start_x + 6;
     mcy = start_y + 5;
-
+    // 보드판 UI
     gotoxy(start_x, start_y);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
-    printf("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+    printf("  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
     gotoxy(start_x, start_y + 1);
-    printf("┃            TIC-TAC-TOE           ┃");
+    printf("  ┃            TIC-TAC-TOE           ┃");
     gotoxy(start_x, start_y + 2);
-    printf("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");;
-
-    gotoxy(start_x + 2, start_y + 4);
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
-    printf("    Player (O)");
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-    printf(" vs ");
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
-    printf("Computer (X)");
+    printf("  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
     for (int i = 0; i < 3; i++) {
         int r = 2 - i;
@@ -75,23 +66,18 @@ int Board() {
                         oldest = 1;
                     }
                 }
-                // 색상 설정
                 if (board[r][c] == 'O')
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), oldest ? 224 : 14);
                 else if (board[r][c] == 'X')
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), oldest ? 205 : 13);
                 else
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
-                if (line == 1) printf("    %c   ", board[r][c]); // 가로 중앙 정렬
+                if (line == 1) printf("    %c   ", board[r][c]);
                 else printf("        ");
-
-                // 세로 구분선 출력
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
                 if (j < 2) printf("┃");
             }
         }
-
-        // 가로 구분선 (행 사이의 경계)
         if (i < 2) {
             gotoxy(mcx, mcy + (i * 4) + 3);
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
@@ -137,7 +123,7 @@ gotoxy(start_x, start_y + 13);
 return 0;
 } */
 
-// 마우스 입력을 숫자로 변환하는 함수
+// 마우스 클릭 또는 키보드 입력
 int MouseClick() {
     HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
     INPUT_RECORD ir;
@@ -149,7 +135,7 @@ int MouseClick() {
             if (ir.Event.MouseEvent.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED) {
                 int mx = ir.Event.MouseEvent.dwMousePosition.X;
                 int my = ir.Event.MouseEvent.dwMousePosition.Y;
-                for (int i = 0; i < 3; i++) { // 화면상의 i번째 칸 (0=상단, 1=중앙, 2=하단)
+                for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
                         int x_min = mcx + (j * 10);
                         int x_max = x_min + 8;
@@ -197,27 +183,185 @@ int SmartMove(char m) {
 int main() {
     FullScreen();
     srand((unsigned int)time(NULL));
+
+    int player_wins = 0;   // 플레이어 승리 횟수
+    int computer_wins = 0; // 컴퓨터 승리 횟수
+    int round = 1;         // 현재 라운드
+
+    // 누군가 2번 이길 때까지 반복
+    while (player_wins < 2 && computer_wins < 2) {
+        // 매 라운드 시작 전 게임 상태 초기화
+        player = 1;
+        int status = -1;
+        stone_count[0] = 0; stone_count[1] = 0;
+        // 보드판 초기화
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                board[i][j] = (i * 3 + j + 1) + '0';
+            }
+        }
+        do {
+            Board();
+            // 상단에 스코어 표시
+            gotoxy(mcx, mcy - 2);
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+            printf("〔ROUND %d〕 PLAYER %d : %d PC", round, player_wins, computer_wins);
+
+            int idx = (player % 2) ? 0 : 1;
+            mark = (idx == 0) ? 'O' : 'X';
+
+            if (idx == 0) { // Player Turn
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+                gotoxy(mcx - 6, mcy + 13);
+                printf("  ▶ PLAYER Turn Click or Choose 1~9 : ");
+                choice = MouseClick();
+            }
+            else { // Computer Turn
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
+                gotoxy(mcx - 6, mcy + 13);
+                printf("  ■ Computer Thinking...          ");
+                Sleep(800);
+                int sm = SmartMove('X');    // 컴퓨터 공격
+                if (sm == 0) sm = SmartMove('O');   // 컴퓨터 방어
+                if (sm == 0 && board[1][1] == '5') sm = 5;  // 중앙이 비어있을 때 선점
+                if (sm == 0) {  // 랜덤 선택
+                    do { sm = (rand() % 9) + 1; } while (board[(sm - 1) / 3][(sm - 1) % 3] == 'O' || board[(sm - 1) / 3][(sm - 1) % 3] == 'X');
+                }
+                choice = sm;
+            }
+            
+            int r = (choice - 1) / 3, c = (choice - 1) % 3;
+            if (choice >= 1 && choice <= 9 && board[r][c] != 'O' && board[r][c] != 'X') {
+                if (stone_count[idx] == 3) {
+                    int old_r = player_history[idx][0].r;
+                    int old_c = player_history[idx][0].c;
+                    board[old_r][old_c] = (old_r * 3 + old_c + 1) + '0';
+                    player_history[idx][0] = player_history[idx][1];
+                    player_history[idx][1] = player_history[idx][2];
+                    stone_count[idx]--;
+                }
+                board[r][c] = mark;
+                player_history[idx][stone_count[idx]].r = r;
+                player_history[idx][stone_count[idx]].c = c;
+                stone_count[idx]++;
+                status = CheckVic();
+                player++;
+            }
+        } while (status == -1);
+
+        Board();
+        // 라운드 결과 판정
+        if (status == 1) {
+            if ((player - 1) % 2 != 0) {
+                player_wins++;
+                gotoxy(mcx + 1, mcy + 13);
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+                printf("★ PLAYER WON ROUND %d! ★", round);
+            }
+            else {
+                computer_wins++;
+                gotoxy(mcx + 1, mcy + 13);
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
+                printf("★ COMPUTER WON ROUND %d! ★", round);
+            }
+        }
+        round++;
+        gotoxy(mcx - 1, mcy + 15);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
+        printf("Press any key for next step...");
+        (void)_getch();
+    }
+    // 최종 승자 발표
+    system("cls");
+    int final_x = mcx;
+    int final_y = mcy;
+    gotoxy(final_x, final_y);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
+    printf("===============================");
+    gotoxy(final_x, final_y + 2);
+    if (player_wins > computer_wins) {
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+        printf("  CONGRATULATIONS! YOU WIN!!!");
+    }
+    else {
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
+        printf("    GAME OVER! COMPUTER WIN!!!");
+    }
+    gotoxy(final_x, final_y + 4);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+    printf("     FINAL SCORE [ %d : %d ]", player_wins, computer_wins);
+    gotoxy(final_x, final_y + 6);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
+    printf("===============================");
+    gotoxy(final_x, final_y + 8);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
+    printf("   Press any key to exit...");
+    (void)_getch();
+
+    return 0;
+}
+
+/* int main() {
+    FullScreen();
+    srand((unsigned int)time(NULL));
+
+	int player_wins = 0;        // 플레이어 승리 횟수
+	int computer_wins = 0;  // 컴퓨터 승리 횟수
+	int round = 1;                    // 현재 라운드
+
+	while (player_wins < 2 && computer_wins < 2) {
+		player = 1;
+		int status = -1;
+		stone_count[0] = stone_count[1] = 0;
+
+        for (int i = 0; i < 3, i++;) {
+			for (int j = 0; j < 3; j++) {
+                board[i][j] = (i * 3 + j + 1) + '0';
+            }
+        }
+        // for (int i = 0; i < 3; i++)
+        //     for (int j = 0; j < 3; j++)
+        //         board[i][j] = (i * 3 + j + 1) + '0';
+        // stone_count[0] = stone_count[1] = 0;
+        // int result = PlayGame();
+        // if (result == 1) {
+        //     if ((player - 1) % 2 == 0) {
+        //         player_wins++;
+        //     }
+        //     else {
+        //         computer_wins++;
+        //     }
+        // }
+        // 현재 스코어 출력
+        // gotoxy(mcx - 6, mcy + 15);
+        // SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+        // printf(" Score - Player: %d | Computer: %d ", player_wins, computer_wins);
+        // gotoxy(mcx - 6, mcy + 17);
+        // printf(" Press any key to start next round... ");
+        // (void)_getch();
+    }
+
     player = 1;
     int status = -1;
 
     do {
         Board();
+		gotoxy(mcx, mcy - 3);
+		SetConsoleActiveScreenBuffer(GetStdHandle(STD_OUTPUT_HANDLE));
+		printf("〔     Round %d 〕    PLAYER %d : %d COMPUTER", round, player_wins, computer_wins);
+
         int idx = (player % 2) ? 0 : 1;
         mark = (idx == 0) ? 'O' : 'X';
-        // Player 차례
-        if (idx == 0) {
+
+        if (idx == 0) {        // Player 차례
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
             gotoxy(mcx - 6, mcy + 13);
-            printf("  ▶ 「Click Board」 or 「press 1~9」 : ");
+            printf("  ▶ 「Click Board」 or 「Choose 1~9」 : ");
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
             choice = MouseClick();
-            /*if (scanf_s("%d", &choice) != 1) {
-                while (getchar() != '\n');
-                choice = -1;
-            }*/
+
         }
-        // Computer 차례
-        else {
+        else {        // Computer 차례
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
             gotoxy(mcx - 6, mcy + 13);
             printf("  ■ Computer Thinking... ");
@@ -227,16 +371,14 @@ int main() {
             if (sm == 0 && board[1][1] == '5') sm = 5;  // 중앙이 비어있을 때 선점
             // 랜덤 선택
             if (sm == 0) {
-                do {
-                    sm = (rand() % 9) + 1;
-                } while (board[(sm - 1) / 3][(sm - 1) % 3] == 'O' || board[(sm - 1) / 3][(sm - 1) % 3] == 'X');
+                do {sm = (rand() % 9) + 1;}
+                while (board[(sm - 1) / 3][(sm - 1) % 3] == 'O' || board[(sm - 1) / 3][(sm - 1) % 3] == 'X');
             }
             choice = sm;
         }
 
         int r = (choice - 1) / 3, c = (choice - 1) % 3;
         if (choice >= 1 && choice <= 9 && board[r][c] != 'O' && board[r][c] != 'X') {
-
             // 4번째 뒀을 때 사라지는 메커니즘 추가
             if (stone_count[idx] == 3) {
                 // 가장 오래된 수의 위치를 찾아 숫자로 복구
@@ -255,14 +397,62 @@ int main() {
             player_history[idx][stone_count[idx]].r = r;
             player_history[idx][stone_count[idx]].c = c;
             stone_count[idx]++;
-
             status = CheckVic();
             player++;
         }
     } while (status == -1);
 
     Board();    // 게임 종료 화면 및 결과 출력
-    CONSOLE_SCREEN_BUFFER_INFO csbi;    // 화면 중앙에 결과 출력
+    if (status == 1) {
+		if ((player - 1) % 2 != 0) {
+            player_wins;
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+            gotoxy(mcx +5 , mcy + 13);
+            printf("      ★ PLAYER WIN  %d!  ★      ", round);
+        }
+        else{
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
+            gotoxy(mcx + 4, mcy + 13);
+            printf("     ★ COMPUTER WIN  %d!  ★     ", round);
+        }
+    }
+
+    round++;
+	gotoxy(mcx + 3, mcy + 15);
+    SetConsoleActiveScreenBuffer(GetStdHandle(STD_OUTPUT_HANDLE),8);
+	printf("     Press any key to continue...     ");
+    (void)_getch();
+	
+	system("cls");
+    int final_x = mcx;
+	int final_y = mcy;
+	gotoxy(final_x, final_y);
+	SetConsoleActiveScreenBuffer(GetStdHandle(STD_OUTPUT_HANDLE), 11);
+    printf("========================================");
+    gotoxy(final_x, final_y + 2);
+    if (player_wins > computer_wins) {
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+        printf("   CONGRATULATIONS! PLAYER IS THE CHAMPION!");
+    }
+    else {
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
+        printf("   GAME OVER! COMPUTER IS THE CHAMPION!");
+    }
+    gotoxy(final_x, final_y + 4);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+    printf("         FINAL SCORE [ %d : %d ]", player_wins, computer_wins);
+    gotoxy(final_x, final_y + 6);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
+    printf("========================================");
+
+    gotoxy(final_x, final_y + 8);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
+    printf("Press any key to exit...");
+    _getch();
+
+    return 0;
+}
+    /* CONSOLE_SCREEN_BUFFER_INFO csbi;    // 화면 중앙에 결과 출력
     GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
     int width = csbi.srWindow.Right - csbi.srWindow.Left + 1;
     int height = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
@@ -277,7 +467,7 @@ int main() {
     }
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
     gotoxy(start_x, start_y + 15);
-    printf("    Press any key to exit...");
+    printf("     Press any key to exit...");
     (void)_getch();
     return 0;
-}
+} */
