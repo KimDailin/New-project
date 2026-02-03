@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\Game_Program\\",
+  "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\New-project\\Game_Program\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D668BEB2-393D-4717-9C95-0FC680FA2848}|Game_Program.vcxproj|C:\\Users\\Administrator\\Desktop\\Game_Program\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{D668BEB2-393D-4717-9C95-0FC680FA2848}|Game_Program.vcxproj|C:\\Users\\Administrator\\Desktop\\New-project\\Game_Program\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D668BEB2-393D-4717-9C95-0FC680FA2848}|Game_Program.vcxproj|solutionrelative:source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -28,11 +28,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "source.c",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Game_Program\\source.c",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\New-project\\Game_Program\\source.c",
               "RelativeDocumentMoniker": "source.c",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\Game_Program\\source.c",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\New-project\\Game_Program\\source.c",
               "RelativeToolTip": "source.c",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAAEcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAANUAAAAAAAAAAAAAAA8BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2026-01-22T11:16:28.029Z",
               "EditorCaption": ""

@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
 #include <time.h>
@@ -8,51 +8,49 @@ char board[3][3] = { {'1','2','3'}, {'4','5','6'}, {'7','8','9'} };
 char mark;
 int choice, player;
 
-// µ¹ÀÇ À§Ä¡¸¦ ±â¾ïÇÏ±â À§ÇÑ ±¸Á¶Ã¼¿Í ¹è¿­
+// ëŒì˜ ìœ„ì¹˜ë¥¼ ê¸°ì–µí•˜ê¸° ìœ„í•œ êµ¬ì¡°ì²´ì™€ ë°°ì—´
 typedef struct { int r, c; } Position;
-Position player_history[2][3];
+Position player_pos[2][3];
 int stone_count[2] = { 0, 0 };
 int mcx, mcy;
 
+// ìœ„ì¹˜ ì¢Œí‘œ
 void gotoxy(int x, int y) {
     COORD pos = { (short)x, (short)y };
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
-// ÀüÃ¼ È­¸éÀ¸·Î ÀüÈ¯
+// ì „ì²´ í™”ë©´ìœ¼ë¡œ ì „í™˜
 void FullScreen() {
     HWND hwnd = GetConsoleWindow();
     SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_OVERLAPPEDWINDOW);
     ShowWindow(hwnd, SW_MAXIMIZE);
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    DWORD mode;    // ¸¶¿ì½º ÀÔ·Â È°¼ºÈ­
+    DWORD mode;    // ë§ˆìš°ìŠ¤ ì…ë ¥ í™œì„±í™”
     GetConsoleMode(hConsole, &mode);
     SetConsoleMode(hConsole, mode | ENABLE_MOUSE_INPUT);
     COORD coord;
     SetConsoleDisplayMode(hConsole, CONSOLE_FULLSCREEN_MODE, &coord);
 }
 
-// º¸µåÆÇ Ãâ·Â
+// ë³´ë“œíŒ ì¶œë ¥
 int Board() {
     system("cls");
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
     int width = csbi.srWindow.Right - csbi.srWindow.Left + 1;
     int height = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
-
     int start_x = (width - 55) / 2;
     int start_y = (height - 25) / 2;
-
     mcx = start_x + 8;
     mcy = start_y + 6;
-
     gotoxy(start_x, start_y);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
-    printf("   ¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯");
+    printf("   â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”“");
     gotoxy(start_x, start_y + 1);
-    printf("   ¦­                TIC - TAC - TOE               ¦­");
+    printf("   â”ƒ                TIC - TAC - TOE               â”ƒ");
     gotoxy(start_x, start_y + 2);
-    printf("   ¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°");
+    printf("   â”—â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”›");
 
     for (int i = 0; i < 3; i++) {
         int r = 2 - i;
@@ -61,41 +59,38 @@ int Board() {
             for (int j = 0; j < 3; j++) {
                 int c = j;
                 int oldest = 0;
-
                 for (int p = 0; p < 2; p++) {
-                    if (stone_count[p] == 3 && player_history[p][0].r == r && player_history[p][0].c == c) {
+                    if (stone_count[p] == 3 && player_pos[p][0].r == r && player_pos[p][0].c == c) {
                         oldest = 1;
                     }
                 }
-
                 if (board[r][c] == 'O')
-                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), oldest ? 11 : 1);   // O »ç¶óÁú »ö : ½ºÄ«ÀÌºí·ç, ±âº» »ö : ÆÄ¶û
+                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), oldest ? 11 : 1);   // O ì‚¬ë¼ì§ˆ ìƒ‰ : ìŠ¤ì¹´ì´ë¸”ë£¨, ê¸°ë³¸ ìƒ‰ : íŒŒë‘
                 else if (board[r][c] == 'X')
-                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), oldest ? 13 : 4);  // X »ç¶óÁú »ö : ¹ÙÀÌ¿Ã·¿, ±âº» »ö : »¡°­
+                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), oldest ? 13 : 4);  // X ì‚¬ë¼ì§ˆ ìƒ‰ : ë°”ì´ì˜¬ë ›, ê¸°ë³¸ ìƒ‰ : ë¹¨ê°•
                 else
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
                 if (line == 2) printf("      %c     ", board[r][c]);
                 else printf("            ");
-
+                
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
-                if (j < 2) printf("¦­");
+                if (j < 2) printf("â”ƒ");
             }
         }
         if (i < 2) {
             gotoxy(mcx, mcy + (i * 6) + 5);
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
-            printf("¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¶¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¶¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬");
+            printf("â”â”â”â”â”â”â”â”â”â”â”â”â•‹â”â”â”â”â”â”â”â”â”â”â”â”â•‹â”â”â”â”â”â”â”â”â”â”â”â”");
         }
     }
     return 0;
 }
 
-// ¸¶¿ì½º Å¬¸¯ ¶Ç´Â Å°º¸µå ÀÔ·Â
+// ë§ˆìš°ìŠ¤ í´ë¦­ ë˜ëŠ” í‚¤ë³´ë“œ ì…ë ¥
 int MouseClick() {
     HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
     INPUT_RECORD ir;
     DWORD read;
-
     while (1) {
         ReadConsoleInput(hInput, &ir, 1, &read);
         if (ir.EventType == MOUSE_EVENT && ir.Event.MouseEvent.dwEventFlags == 0) {
@@ -108,7 +103,6 @@ int MouseClick() {
                         int x_max = x_min + 8;
                         int y_min = mcy + (i * 4);
                         int y_max = y_min + 2;
-
                         if (mx >= x_min && mx <= x_max && my >= y_min && my <= y_max) {
                             int r = 2 - i;
 							if (board[r][j] == 'O' || board[r][j] == 'X') continue;
@@ -127,24 +121,26 @@ int MouseClick() {
         }
     }
 }
-// °ÔÀÓ ½Â¸® Á¶°Ç
+// ê²Œì„ ìŠ¹ë¦¬ ì¡°ê±´
 int CheckVic() {
     for (int i = 0; i < 3; i++) {
-        if (board[i][0] == board[i][1] && board[i][1] == board[i][2]) return 1;   // °¡·Î ½Â¸® Á¶°Ç
-        if (board[0][i] == board[1][i] && board[1][i] == board[2][i]) return 1;   // ¼¼·Î ½Â¸® Á¶°Ç
+        if (board[i][0] == board[i][1] && board[i][1] == board[i][2]) return 1;   // ê°€ë¡œ ìŠ¹ë¦¬ ì¡°ê±´
+        if (board[0][i] == board[1][i] && board[1][i] == board[2][i]) return 1;   // ì„¸ë¡œ ìŠ¹ë¦¬ ì¡°ê±´
     }
-    if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) return 1;   // ´ë°¢¼± ½Â¸® Á¶°Ç 
+    if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) return 1;   // ëŒ€ê°ì„  ìŠ¹ë¦¬ ì¡°ê±´ 
     if (board[0][2] == board[1][1] && board[1][1] == board[2][0]) return 1;
 
     return -1;
 }
-// ¶È¶ÈÇÑ Computer
+// ë˜‘ë˜‘í•œ Computer
 int SmartMove(char m) {
     for (int i = 1; i <= 9; i++) {
         int r = (i - 1) / 3, c = (i - 1) % 3;
         if (board[r][c] != 'O' && board[r][c] != 'X') {
             char backup = board[r][c]; board[r][c] = m;
-            if (CheckVic() == 1) { board[r][c] = backup; return i; }
+            if (CheckVic() == 1) {
+               board[r][c] = backup; return i; 
+            }
             board[r][c] = backup;
         }
     }
@@ -155,17 +151,17 @@ int main() {
     FullScreen();
     srand((unsigned int)time(NULL));
 
-    int player_wins = 0;   // ÇÃ·¹ÀÌ¾î ½Â¸® È½¼ö
-    int computer_wins = 0; // ÄÄÇ»ÅÍ ½Â¸® È½¼ö
-    int round = 1;         // ÇöÀç ¶ó¿îµå
-    // 3ÆÇ 2¼±½ÂÁ¦
-    // ´©±º°¡ 2¹ø ÀÌ±æ ¶§±îÁö ¹İº¹
+    int player_wins = 0;   // í”Œë ˆì´ì–´ ìŠ¹ë¦¬ íšŸìˆ˜
+    int computer_wins = 0; // ì»´í“¨í„° ìŠ¹ë¦¬ íšŸìˆ˜
+    int round = 1;         // í˜„ì¬ ë¼ìš´ë“œ
+    // 3íŒ 2ì„ ìŠ¹ì œ
+    // ëˆ„êµ°ê°€ 2ë²ˆ ì´ê¸¸ ë•Œê¹Œì§€ ë°˜ë³µ
     while (player_wins < 2 && computer_wins < 2) {
-        // ¸Å ¶ó¿îµå ½ÃÀÛ Àü °ÔÀÓ »óÅÂ ÃÊ±âÈ­
+        // ë§¤ ë¼ìš´ë“œ ì‹œì‘ ì „ ê²Œì„ ìƒíƒœ ì´ˆê¸°í™”
         player = 1;
         int status = -1;
         stone_count[0] = 0; stone_count[1] = 0;
-        // º¸µåÆÇ ÃÊ±âÈ­
+        // ë³´ë“œíŒ ì´ˆê¸°í™”
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 board[i][j] = (i * 3 + j + 1) + '0';
@@ -173,108 +169,105 @@ int main() {
         }
         do {
             Board();
-            // »ó´Ü¿¡ ½ºÄÚ¾î Ç¥½Ã
+            // ìƒë‹¨ì— ìŠ¤ì½”ì–´ í‘œì‹œ
             gotoxy(mcx + 5, mcy - 2);
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-            printf("¡²ROUND %d¡³ PLAYER %d : %d PC", round, player_wins, computer_wins);
-
+            printf("ã€”ROUND %dã€• PLAYER %d : %d PC", round, player_wins, computer_wins);
             int idx = (player % 2) ? 0 : 1;
             mark = (idx == 0) ? 'O' : 'X';
-
             if (idx == 0) { // Player Turn
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
                 gotoxy(mcx - 2, mcy + 18);
-                printf("  ¢º PLAYER Turn | Click or Choose 1~9 : ");
+                printf("  â–¶ PLAYER Turn | Click or Choose 1~9 : ");
                 choice = MouseClick();
             }
             else { // Computer Turn
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
                 gotoxy(mcx - 2, mcy + 18);
-                printf("  ¡á Computer Thinking...          ");
+                printf("  â–  Computer Thinking...          ");
                 Sleep(800);
-                int sm = SmartMove('X');    // ÄÄÇ»ÅÍ °ø°İ
-                if (sm == 0) sm = SmartMove('O');   // ÄÄÇ»ÅÍ ¹æ¾î
-                if (sm == 0 && board[1][1] == '5') sm = 5;  // Áß¾ÓÀÌ ºñ¾îÀÖÀ» ¶§ ¼±Á¡
-                if (sm == 0) {  // ·£´ı ¼±ÅÃ
+                int sm = SmartMove('X');    // ì»´í“¨í„° ê³µê²©
+                if (sm == 0) sm = SmartMove('O');   // ì»´í“¨í„° ë°©ì–´
+                if (sm == 0 && board[1][1] == '5') sm = 5;  // ì¤‘ì•™ì´ ë¹„ì–´ìˆì„ ë•Œ ì„ ì 
+                if (sm == 0) {  // ëœë¤ ì„ íƒ
                     do { sm = (rand() % 9) + 1; }
                     while (board[(sm - 1) / 3][(sm - 1) % 3] == 'O' || board[(sm - 1) / 3][(sm - 1) % 3] == 'X');
                 }
                 choice = sm;
                 Beep(330, 100);
             }
-            // ¹«ÇÑÇÑ Æ½ÅÃÅä ÇÙ½É ¸ŞÄ¿´ÏÁò(4¹øÂ° µ¹ Á¦°Å)
+            // ë¬´í•œí•œ í‹±íƒí†  í•µì‹¬ ë©”ì»¤ë‹ˆì¦˜(4ë²ˆì§¸ ëŒ ì œê±°)
             int r = (choice - 1) / 3, c = (choice - 1) % 3;
             if (choice >= 1 && choice <= 9 && board[r][c] != 'O' && board[r][c] != 'X') {
-                if (stone_count[idx] == 3) {    // 4¹øÂ° µ¹ºÎÅÍ´Â °¡Àå ¿À·¡µÈ µ¹ Á¦°Å
-                    int old_r = player_history[idx][0].r;
-                    int old_c = player_history[idx][0].c;
-                    board[old_r][old_c] = (old_r * 3 + old_c + 1) + '0';    // ¼ıÀÚ·Î º¹±¸
-                    player_history[idx][0] = player_history[idx][1];     // 1¹ø µ¹À» 0¹øÀ¸·Î
-                    player_history[idx][1] = player_history[idx][2];     // 2¹ø µ¹À» 1¹øÀ¸·Î
-                    stone_count[idx]--;                                                     // µ¹ °³¼ö °¨¼Ò
+                if (stone_count[idx] == 3) {    // 4ë²ˆì§¸ ëŒë¶€í„°ëŠ” ê°€ì¥ ì˜¤ë˜ëœ ëŒ ì œê±°
+                    int old_r = player_pos[idx][0].r;
+                    int old_c = player_pos[idx][0].c;
+                    board[old_r][old_c] = (old_r * 3 + old_c + 1) + '0';   // ìˆ«ìë¡œ ë³µêµ¬
+                    player_pos[idx][0] = player_pos[idx][1];                 // 1ë²ˆ ëŒì„ 0ë²ˆìœ¼ë¡œ
+                    player_pos[idx][1] = player_pos[idx][2];                 // 2ë²ˆ ëŒì„ 1ë²ˆìœ¼ë¡œ
+                    stone_count[idx]--;                                                   // ëŒ ê°œìˆ˜ ê°ì†Œ
                 }
-                board[r][c] = mark;                                                          // »õ·Î¿î µ¹ ³õ±â
-                player_history[idx][stone_count[idx]].r = r;
-                player_history[idx][stone_count[idx]].c = c;
+                board[r][c] = mark;                                                       // ìƒˆë¡œìš´ ëŒ ë†“ê¸°
+                player_pos[idx][stone_count[idx]].r = r;
+                player_pos[idx][stone_count[idx]].c = c;
                 stone_count[idx]++;
                 status = CheckVic();
                 player++;
             }
-        } while (status == -1);     // ½Â¸®ÀÚ°¡ ³ª¿Ã ¶§±îÁö ¹İº¹
+        } while (status == -1);     // ìŠ¹ë¦¬ìê°€ ë‚˜ì˜¬ ë•Œê¹Œì§€ ë°˜ë³µ
 
-        // °ÔÀÓ Á¾·á È­¸é ¹× °á°ú Ãâ·Â
+        // ê²Œì„ ì¢…ë£Œ í™”ë©´ ë° ê²°ê³¼ ì¶œë ¥
         Board();
-        // ¶ó¿îµå °á°ú ÆÇÁ¤
+        // ë¼ìš´ë“œ ê²°ê³¼
         if (status == 1) {
             if ((player - 1) % 2 != 0) {
                 player_wins++;
                 gotoxy(mcx + 6, mcy + 18);
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-                printf("¡Ú PLAYER WON ROUND %d! ¡Ú", round);
+                printf("â˜… PLAYER WON ROUND %d! â˜…", round);
 				Beep(523, 100); Beep(659, 100); Beep(783, 150);
             }
             else {
                 computer_wins++;
                 gotoxy(mcx + 6, mcy + 18);
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
-                printf("¡Ú COMPUTER WON ROUND %d! ¡Ú", round);
+                printf("â˜… COMPUTER WON ROUND %d! â˜…", round);
                 Beep(330, 100); Beep(294, 100); Beep(261, 150);
             }
         }
-        round++;    // ´ÙÀ½ ¶ó¿îµå
-        // ÇöÀç ½ºÄÚ¾î Ãâ·Â
-        gotoxy(mcx - 6, mcy + 20);
+        round++;
+        gotoxy(mcx + 3, mcy + 20);
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
         printf("Press any key for next round...");
         (void)_getch();
     }
-    // ÃÖÁ¾ ½ÂÀÚ ¹ßÇ¥
+    // ìµœì¢… ìŠ¹ì ë°œí‘œ
     system("cls");
     int final_x = mcx;
     int final_y = mcy;
     gotoxy(final_x + 3, final_y);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
     printf("================================");
-    gotoxy(final_x + 4, final_y + 3);       // ÃÖÁ¾ÀûÀ¸·Î ½Â¸®ÀÚ Ãâ·Â
-    if (player_wins > computer_wins) {  // Player ÃÖÁ¾ ½Â¸®
+    gotoxy(final_x + 4, final_y + 3);       // ìµœì¢…ì ìœ¼ë¡œ ìŠ¹ë¦¬ì ì¶œë ¥
+    if (player_wins > computer_wins) {  // Player ìµœì¢… ìŠ¹ë¦¬
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
-        printf(" CONGRATULATIONS! YOU ¡ÚWIN¡Ú");
+        printf(" CONGRATULATIONS! â˜…VICTORYâ˜…");
         Beep(523, 150); Beep(523, 150); Beep(523, 150); Beep(1046, 300);
     }
-    else {      // Computer ÃÖÁ¾ ½Â¸®
+    else {      // Computer ìµœì¢… ìŠ¹ë¦¬
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
-        printf("  GAME OVER! COMPUTER ¡ÙWIN¡Ù");
+        printf("     GAME OVER! â™ DEFEATâ™ ");
         Beep(261, 200); Beep(196, 200); Beep(164, 400);
     }
-    gotoxy(final_x + 3, final_y + 6);
+    gotoxy(final_x + 8, final_y + 6);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-    printf("     FINAL SCORE ¡¼ %d : %d ¡½", player_wins, computer_wins);
+    printf("FINAL SCORE ã€ %d : %d ã€‘", player_wins, computer_wins);
     gotoxy(final_x + 3, final_y + 9);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
     printf("================================");
-    gotoxy(final_x + 3, final_y + 11);
+    gotoxy(final_x + 7, final_y + 11);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
-    printf("   Press any key to exit...");
+    printf("Press any key to exit...");
     (void)_getch();
 
     return 0;
